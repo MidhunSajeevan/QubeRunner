@@ -10,7 +10,7 @@ public float sideforce=1000f;
     
     void FixedUpdate()
     {
-        
+        //check if the key is pressed, it return true if it is preede else false
         if (Input.GetKey(KeyCode.UpArrow))
         {
             rb.AddForce(0, 0, forwardforce * Time.deltaTime);
