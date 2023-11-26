@@ -7,7 +7,7 @@ public class playerBehaviour : MonoBehaviourPunCallbacks
     public Rigidbody rb;
     public float forwardforce=2000f;
     public float sideforce=1000f;
-    private float speed = 10f;
+    private float speed = 30f;
     private bool _isPlayerAlive = true;
     GameManager gameManager;
     private float horizontalInput;

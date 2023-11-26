@@ -46,12 +46,12 @@ public class GameManager : MonoBehaviour
     public void Restart()
     {
         _playerBehaviur.IsPlayerAlive = true;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-      
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        
     }
     public void Quit()
     {
         Application.Quit();
-        Debug.LogWarning("Quiting");
+       
     }
 }
