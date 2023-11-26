@@ -154,6 +154,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
+    Android: com.DefaultCompany.QubeProject
     Standalone: com.DefaultCompany.QubeProject
   buildNumber:
     Standalone: 0

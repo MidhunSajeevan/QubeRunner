@@ -7,8 +7,11 @@ public class playerBehaviour : MonoBehaviourPunCallbacks
     public Rigidbody rb;
     public float forwardforce=2000f;
     public float sideforce=1000f;
+    private float speed = 10f;
     private bool _isPlayerAlive = true;
     GameManager gameManager;
+    private float horizontalInput;
+    private float verticalInput;
     public bool IsPlayerAlive
     {
         get { return _isPlayerAlive; }
@@ -29,8 +32,11 @@ public class playerBehaviour : MonoBehaviourPunCallbacks
             if (IsPlayerAlive)
             {
 
-
-                if (Input.GetKey(KeyCode.UpArrow))
+                horizontalInput = SimpleInput.GetAxis("Horizontal");
+                verticalInput = SimpleInput.GetAxis("Vertical");
+                rb.AddForce(0, 0, speed * verticalInput);
+                rb.AddForce(speed * horizontalInput, 0, 0);
+                if (SimpleInput.GetKey(KeyCode.UpArrow))
                 {
                     rb.AddForce(0, 0, forwardforce * Time.deltaTime);
 
