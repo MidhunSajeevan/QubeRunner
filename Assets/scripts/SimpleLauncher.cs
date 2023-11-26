@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.UI;
 
 public class SimpleLauncher : MonoBehaviourPunCallbacks
 {
     public GameObject PlayerPrefab; // Change the type to GameObject
     private float spawnRadius = 5f; // Adjust this to set the spawn radius
 
-    void Start()
-    {
-        PhotonNetwork.ConnectUsingSettings();
-    }
-
+    public InputField _PlayerNickName;
+    public GameObject _NameUi;
+    [SerializeField]
+    private GameObject _ScoreUI;
     public override void OnConnectedToMaster()
     {
         Debug.Log("Connected to master");
@@ -29,5 +29,12 @@ public class SimpleLauncher : MonoBehaviourPunCallbacks
 
         // Instantiate the player with the adjusted position
         PhotonNetwork.Instantiate(PlayerPrefab.name, spawnPosition, Quaternion.identity);
+    }
+    public void StartGame()
+    {
+        PhotonNetwork.NickName = _PlayerNickName.text;
+        PhotonNetwork.ConnectUsingSettings();
+        _NameUi.SetActive(false);
+        _ScoreUI.SetActive(true);
     }
 }
