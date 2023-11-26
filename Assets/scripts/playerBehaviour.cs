@@ -4,18 +4,21 @@ using Photon.Pun;
 public class playerBehaviour : MonoBehaviourPunCallbacks
 {
 
-public Rigidbody rb;
-public float forwardforce=2000f;
-public float sideforce=1000f;
-private bool _isPlayerAlive = true;
-    [SerializeField]
+    public Rigidbody rb;
+    public float forwardforce=2000f;
+    public float sideforce=1000f;
+    private bool _isPlayerAlive = true;
     GameManager gameManager;
     public bool IsPlayerAlive
     {
         get { return _isPlayerAlive; }
         set { _isPlayerAlive= value; }
     }
-    
+
+    private void Awake()
+    {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
     void FixedUpdate()
     {
         //check if the key is pressed, it return true if it is preede else false
@@ -48,20 +51,21 @@ private bool _isPlayerAlive = true;
 
                 }
             }
-            if (rb.position.y < -1f && !gameManager.IsGameComplete)
+            if (rb.position.y < -1f && !gameManager.IsGameComplete)     
             {
-                FindObjectOfType<GameManager>().EndGame();
+                gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+               gameManager.EndGame();
             }
         }
 
     }
-    private void OnCollisionEnter(Collision collision)
-    {
-
-        if (collision.collider.CompareTag("obstacle"))
+        private void OnCollisionEnter(Collision collision)
         {
-            FindObjectOfType<GameManager>().EndGame();
-            IsPlayerAlive = false;
+
+            if (collision.collider.CompareTag("obstacle"))
+            {
+                FindObjectOfType<GameManager>().EndGame();
+                IsPlayerAlive = false;
+            }
         }
-    }
 }

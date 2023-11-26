@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     playerBehaviour _playerBehaviur;
     private bool _isgameComplete = false;
-
+    private LevelComplete _levelComplete;
     public bool IsGameComplete
     {  get { return _isgameComplete; } 
         set { _isgameComplete = value; }
@@ -22,8 +22,10 @@ public class GameManager : MonoBehaviour
     //{
     //    _playerBehaviur = GameObject.FindGameObjectWithTag("Player").GetComponent<playerBehaviour>();
     //}
-    public void completeLevel()
+    public void completeLevel(string PlayerName)
     {
+        _levelComplete = CompleteUi.GetComponent<LevelComplete>();
+        _levelComplete.text.text = PlayerName;
         IsGameComplete = true;
         CompleteUi.SetActive(true);
     }
